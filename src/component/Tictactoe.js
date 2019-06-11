@@ -47,7 +47,9 @@ function Board() {
 
     // initialize status
     let status
-    status = `Next Palyer: ${xIsNext? 'x':'o'}`
+    const winner = calculateWinner(boardSqaure)
+    status = winner ? `Winner is : ${winner}` : 
+                                `Next Palyer: ${xIsNext? 'x':'o'}`
     // render the board
     return (
         <div >
@@ -58,7 +60,27 @@ function Board() {
         </div>
     )
         
-    
-        // function that calculate the winner
 }
     
+    // function that calculate the winner
+    function calculateWinner(squaresArr) {
+        const winningLines = [
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
+        ]
+
+        // loop through this set and check if values in our squares array fulfill the requirment
+            // if yes, return the winner
+            // else, return nothign
+        for (let i = 0; i<winningLines.length; i++) {
+            const [a, b, c] = winningLines[i];
+            if (squaresArr[a] && squaresArr[a] === squaresArr[b] && squaresArr[b] === squaresArr[c])
+            return squaresArr[a];
+        }
+        return null;
+    }
