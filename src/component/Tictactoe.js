@@ -44,9 +44,14 @@ function Board() {
     const renderSquare = (index) => {
         return <Square value = {boardSqaure[index]} onClick = { ()  => handleClick(index) } />
     }
+
+    // initialize status
+    let status
+    status = `Next Palyer: ${xIsNext? 'x':'o'}`
     // render the board
     return (
         <div >
+            <div className='status'>{status}</div>
             <div className="board-row">{renderSquare[0]}{renderSquare[1]}{renderSquare[2]}</div>
             <div className="board-row">{renderSquare[3]}{renderSquare[4]}{renderSquare[5]}</div>
             <div className="board-row">{renderSquare[6]}{renderSquare[7]}{renderSquare[8]}</div>
