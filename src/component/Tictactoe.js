@@ -23,6 +23,8 @@ function Board() {
         // board state (state)
         // turn state (state)
     const [boardSqaure, setBoardSqaure] = useState([Array(9).fill(null)])
+    // there is a bug here: the first square's props value is an array of 9, while the rest are all null.
+    // debugger
     const [xIsNext, setXIsNext] = useState(true)
 
     // handleClick
@@ -50,7 +52,7 @@ function Board() {
                 let status
                 const winner = calculateWinner(boardSqaure)
                 status = winner ? `Winner is : ${winner}` : 
-                                            `Next Palyer: ${xIsNext? 'x':'o'}`
+                                            `Next Palyer: ${xIsNext? 'X':'O'}`
                 // render the board
                 return (
                     <div >
