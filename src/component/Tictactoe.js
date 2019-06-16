@@ -22,7 +22,7 @@ function Board() {
 // state
         // board state (state)
         // turn state (state)
-    const [boardSqaure, setBoardSqaure] = useState([Array(9).fill(null)])
+    const [boardSquare, setboardSquare] = useState([null,null,null,null,null,null,null,null,null])
     // there is a bug here: the first square's props value is an array of 9, while the rest are all null.
     // debugger
     const [xIsNext, setXIsNext] = useState(true)
@@ -30,13 +30,13 @@ function Board() {
     // handleClick
     const handleClick = index => {
         // copy of our board state
-        const squares = [...boardSqaure];
+        const squares = [...boardSquare];
         // if the index of the board is filled, return
         if (squares[index]) return 
             // mutate that copy, and add x or o
             squares[index] = xIsNext ? "X" : 'O'
             // set the state of the board
-            setBoardSqaure(squares)
+            setboardSquare(squares)
             // set the state of the turn
             setXIsNext(!xIsNext)
     }
@@ -45,12 +45,17 @@ function Board() {
                 // create a render square function
                 // takes in an index and returns a square with the value and function
                 const renderSquare = (index) => {
-                    return <Square value = {boardSqaure[index]} onClick = { ()  => {handleClick(index)} } />
+                    return <Square value = {boardSquare[index]} onClick = { ()  => {
+                        handleClick(index)    
+                        console.log('index', index);
+                        console.log('boardSquare[index]', boardSquare[index]);
+                             }
+                        } />
                 }
 
                 // initialize status
                 let status
-                const winner = calculateWinner(boardSqaure)
+                const winner = calculateWinner(boardSquare)
                 status = winner ? `Winner is : ${winner}` : 
                                             `Next Palyer: ${xIsNext? 'X':'O'}`
                 // render the board
