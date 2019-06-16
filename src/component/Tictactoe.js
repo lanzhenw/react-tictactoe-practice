@@ -1,10 +1,10 @@
-import React from 'react'
-import '././app.css'
+import React, {useState} from 'react'
+
 
 export default function tictactoe() {
     return (
         <div>
-            <Square />
+            <Board />
         </div>
     )
 }
@@ -29,8 +29,9 @@ function Board() {
         // copy of our board state
         const squares = [...boardSqaure];
         // if the index of the board is filled, return
-        if (squares[index]) return;
-        
+        if (squares[index]) {
+            return
+        };
         // mutate that copy, and add x or o
         squares[index] = xIsNext ? "x" : 'o'
         // set the state of the board
@@ -54,9 +55,10 @@ function Board() {
     return (
         <div >
             <div className='status'>{status}</div>
-            <div className="board-row">{renderSquare[0]}{renderSquare[1]}{renderSquare[2]}</div>
-            <div className="board-row">{renderSquare[3]}{renderSquare[4]}{renderSquare[5]}</div>
-            <div className="board-row">{renderSquare[6]}{renderSquare[7]}{renderSquare[8]}</div>
+            <div className="board-row">{renderSquare(boardSqaure[0])}{renderSquare(boardSqaure[1])}{renderSquare(boardSqaure[2])}</div>
+            <div className="board-row">{renderSquare(boardSqaure[3])}{renderSquare(boardSqaure[4])}{renderSquare(boardSqaure[5])}</div>
+            <div className="board-row">{renderSquare(boardSqaure[6])}{renderSquare(boardSqaure[7])}{renderSquare(boardSqaure[8])}</div>
+            
         </div>
     )
         
